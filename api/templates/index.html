@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <title>File Parser</title>
+  </head>
+  <body>
+    <h1>Uploading File</h1>
+    <form
+      action="{% url 'index' %}"
+      method="post"
+      enctype="multipart/form-data"
+    >
+      {% csrf_token %} {{ form.as_p }}
+      <button type="submit">Submit</button>
+    </form>
+  </body>
+  {% if data %}
+  <table>
+    <tr>
+      <th>Word</th>
+      <th>TF</th>
+      <th>IDF</th>
+    </tr>
+    {% for el in data %}
+    <tr>
+      <td>{{ el.word }}</td>
+      <td>{{ el.tf }}</td>
+      <td>{{ el.idf }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% endif %}
+</html>
